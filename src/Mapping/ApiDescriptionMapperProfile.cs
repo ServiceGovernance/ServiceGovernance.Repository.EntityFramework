@@ -19,7 +19,16 @@ namespace ServiceGovernance.Repository.EntityFramework.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
             CreateMap<string, OpenApiDocument>()
-                 .ConstructUsing(src => OpenApiDocumentHelper.ReadFromJson(src));
+                 .ConstructUsing(src => OpenApiDocumentHelper.ReadFromJson(src))
+                  .ForMember(dest => dest.Components, opt => opt.Ignore())
+                  .ForMember(dest => dest.Extensions, opt => opt.Ignore())
+                  .ForMember(dest => dest.ExternalDocs, opt => opt.Ignore())
+                  .ForMember(dest => dest.Info, opt => opt.Ignore())
+                  .ForMember(dest => dest.Paths, opt => opt.Ignore())
+                  .ForMember(dest => dest.SecurityRequirements, opt => opt.Ignore())
+                  .ForMember(dest => dest.Servers, opt => opt.Ignore())
+                  .ForMember(dest => dest.Tags, opt => opt.Ignore())
+                  ;
 
             CreateMap<OpenApiDocument, string>()
                 .ConstructUsing(src => src.ToJson());

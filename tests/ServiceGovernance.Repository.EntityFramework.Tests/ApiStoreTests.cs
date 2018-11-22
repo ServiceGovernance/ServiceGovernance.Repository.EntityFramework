@@ -99,7 +99,7 @@ namespace ServiceGovernance.Repository.EntityFramework.Tests
                 using (var context = new RepositoryDbContext(DbContextOptions, StoreOptions))
                 {
                     var store = new ApiStore(context, new Mock<ILogger<ApiStore>>().Object);
-                    var services = (await store.GetAllAsync()).ToList();
+                    var services = (await store.GetAllAsync()).OrderBy(s => s.ServiceId).ToList();
 
                     services.Should().HaveCount(2);
                     services[0].ServiceId.Should().Be(model1.ServiceId);

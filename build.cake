@@ -5,7 +5,7 @@ var target = Argument("target", "Default");
 //////////////////////////////////////////////////////////////////////
 //    Build Variables
 /////////////////////////////////////////////////////////////////////
-var project = "./src/ServiceGovernance.Repository.Models/ServiceGovernance.Repository.Models.csproj";
+var project = "./src/ServiceGovernance.Repository.EntityFramework.csproj";
 var outputDir = "./buildArtifacts/";
 var outputDirNuget = outputDir+"NuGet/";
 

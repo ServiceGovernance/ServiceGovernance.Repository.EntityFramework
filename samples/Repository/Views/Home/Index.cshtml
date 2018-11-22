@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Services";
+}
+@model IEnumerable<ServiceGovernance.Repository.Models.ServiceApiDescription>
+@using System.Linq
+
+<h3>Registered Services</h3>
+
+@foreach (var apiDescription in Model)
+{
+
+    <h4>@apiDescription.ServiceId</h4>
+    
+    <br />
+    <b>OpenApi document:</b>
+    @Html.Raw(apiDescription.ApiDocument.ToString())
+}

@@ -103,9 +103,10 @@ namespace ServiceGovernance.Repository.EntityFramework.Tests
 
                     services.Should().HaveCount(2);
                     services[0].ServiceId.Should().Be(model1.ServiceId);
-                    // TODO check api document
+                    services[0].ApiDocument.Info.Title.Should().Be(model1.ApiDocument.Info.Title);
+
                     services[1].ServiceId.Should().Be(model2.ServiceId);
-                    // TODO check api document
+                    services[1].ApiDocument.Info.Title.Should().Be(model2.ApiDocument.Info.Title);
                 }
             }
         }

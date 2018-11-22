@@ -38,19 +38,34 @@ namespace ServiceGovernance.Repository.EntityFramework.Tests
 
             var document = OpenApiDocumentHelper.ReadFromJson(entity.ApiDocument);
 
-            model = entity.ToModel();
-            
-            //model.ServiceId.Should().Be(entity.ServiceId);
-            //model.Endpoints.Should().HaveCount(2);
-            //model.Endpoints[0].Should().Be(entity.Endpoints[0].EndpointUri);
-            //model.Endpoints[1].Should().Be(entity.Endpoints[1].EndpointUri);
+            var newmodel = entity.ToModel();
+            newmodel.ApiDocument.Info.Title.Should().Be(model.ApiDocument.Info.Title);
+            document.Info.Title.Should().Be(model.ApiDocument.Info.Title);
+        }
 
-            //model.IpAddresses.Should().HaveCount(2);
-            //model.IpAddresses[0].Should().Be(entity.IpAddresses[0].IpAddress);
-            //model.IpAddresses[1].Should().Be(entity.IpAddresses[1].IpAddress);
+        [Test]
+        public void UpdateEntity_Updates_ApiDocument()
+        {
+            var model = new ServiceApiDescriptionBuilder().Build();
+            var entity = model.ToEntity();
 
-            //model.PublicUrls.Should().HaveCount(1);
-            //model.PublicUrls[0].Should().Be(entity.PublicUrls[0].Url);
+            model.ApiDocument.Info.Title = "UpdateEntity_Updates_ApiDocument";
+            model.UpdateEntity(entity);
+
+            var document = OpenApiDocumentHelper.ReadFromJson(entity.ApiDocument);
+            document.Info.Title.Should().Be(model.ApiDocument.Info.Title);
+        }
+
+        [Test]
+        public void UpdateEntity_Updates_ServiceId()
+        {
+            var model = new ServiceApiDescriptionBuilder().Build();
+            var entity = model.ToEntity();
+
+            model.ServiceId = "UpdateEntity_Updates_ServiceId";
+            model.UpdateEntity(entity);
+
+            entity.ServiceId.Should().Be(model.ServiceId);
         }
     }
 }

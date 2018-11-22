@@ -58,6 +58,9 @@ namespace ServiceGovernance.Repository.EntityFramework
         /// <param name="entity">The entity.</param>
         public static void UpdateEntity(this ServiceApiDescription model, ApiDescription entity)
         {
+            // reset apidocument in order to rewrite string -> Strange behaviour
+            entity.ApiDocument = null;
+
             Mapper.Map(model, entity);
         }
     }
